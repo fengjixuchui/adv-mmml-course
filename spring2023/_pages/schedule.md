@@ -1,14 +1,16 @@
 ---
 layout: schedule
-permalink: /spring2022/schedule/
+permalink: /spring2023/schedule/
 title: Schedule
 ---
+
+** Exact topics and schedule subject to change, based on student interests and course discussions. **
 
 {% assign current_module = 0 %}
 {% assign skip_classes = 0 %}
 {% assign prev_date = 0 %}
 
-{% for item in site.data.lectures %}
+{% for item in site.data.lectures_2023 %}
 {% if item.date %}
 {% assign lecture = item %}
 {% assign event_type = "upcoming" %}
@@ -28,26 +30,23 @@ title: Schedule
     <td colspan="4">{{ lecture.title }}</td>
     {% else %}
     <td>
-        {{ lecture.title }}
-        <br />
-        [
-            {% if lecture.slides %}
-              <a href="{{ lecture.slides }}" target="_blank">slides</a>
-            {% else %}
-              slides
-            {% endif %}
-            {% if lecture.annotated %}
-              (<a href="{{ lecture.annotated }}" target="_blank">annotated</a>)
-            {% endif %}
-            {% if lecture.video %}
-            | <a href="{{ lecture.video }}" target="_blank">video</a>
-            {% else %}
-            | video
-            {% endif %}
-        ]
+        {{ lecture.title }} <br/>
+            <ul>
+               {% for topic in lecture.topics %}
+                  <li style="font-size:12px;">
+                     {{topic}}
+                  </li>
+               {% endfor %}
+        </ul>
     </td>
     <td>
-        <p>{{ lecture.topics }}</p>
+        <ul>
+               {% for reading in lecture.readings %}
+                  <li style="font-size:12px;">
+                     {{reading}}
+                  </li>
+               {% endfor %}
+        </ul>
     </td>
     {% endif %}
 </tr>
